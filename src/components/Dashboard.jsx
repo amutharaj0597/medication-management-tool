@@ -13,6 +13,49 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../styles/Dashboard.css";
 
+// ✅ Move scheduleReminders and timeSlotMap outside the component
+const timeSlotMap = {
+  "Before Breakfast": "08:00",
+  "After Breakfast": "09:00",
+  "Before Lunch": "12:30",
+  "After Lunch": "14:00",
+  "Before Dinner": "18:30",
+  "After Dinner": "20:00"
+};
+
+const scheduleReminders = (prescriptions) => {
+  const now = new Date();
+
+  prescriptions.forEach((p) => {
+    const time = timeSlotMap[p.time];
+    if (!time) return;
+
+    let current = new Date(p.startDate);
+    const end = new Date(p.endDate);
+
+    while (current <= end) {
+      const [hour, minute] = time.split(":");
+      const reminderTime = new Date(current);
+      reminderTime.setHours(parseInt(hour));
+      reminderTime.setMinutes(parseInt(minute));
+      reminderTime.setSeconds(0);
+
+      const diff = reminderTime.getTime() - now.getTime();
+      if (diff > 0 && diff < 3600000) {
+        setTimeout(() => {
+          if (Notification.permission === "granted") {
+            new Notification("💊 Medicine Reminder", {
+              body: `${p.medicineName} (${p.dosage}) - ${p.time}`
+            });
+          }
+        }, diff);
+      }
+
+      current.setDate(current.getDate() + 1);
+    }
+  });
+};
+
 function Dashboard() {
   const [user, setUser] = useState(null);
   const [medicineName, setMedicineName] = useState("");
@@ -35,7 +78,7 @@ function Dashboard() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [navigate]); // ✅ Fix: added 'navigate' to dependencies
 
   const handleAddPrescription = async () => {
     if (!medicineName || !dosage || !startDate || !endDate || !time) {
@@ -68,48 +111,6 @@ function Dashboard() {
     navigate("/");
   };
 
-  const timeSlotMap = {
-    "Before Breakfast": "08:00",
-    "After Breakfast": "09:00",
-    "Before Lunch": "12:30",
-    "After Lunch": "14:00",
-    "Before Dinner": "18:30",
-    "After Dinner": "20:00"
-  };
-
-  const scheduleReminders = (prescriptions) => {
-    const now = new Date();
-
-    prescriptions.forEach((p) => {
-      const time = timeSlotMap[p.time];
-      if (!time) return;
-
-      let current = new Date(p.startDate);
-      const end = new Date(p.endDate);
-
-      while (current <= end) {
-        const [hour, minute] = time.split(":");
-        const reminderTime = new Date(current);
-        reminderTime.setHours(parseInt(hour));
-        reminderTime.setMinutes(parseInt(minute));
-        reminderTime.setSeconds(0);
-
-        const diff = reminderTime.getTime() - now.getTime();
-        if (diff > 0 && diff < 3600000) {
-          setTimeout(() => {
-            if (Notification.permission === "granted") {
-              new Notification("💊 Medicine Reminder", {
-                body: `${p.medicineName} (${p.dosage}) - ${p.time}`
-              });
-            }
-          }, diff);
-        }
-
-        current.setDate(current.getDate() + 1);
-      }
-    });
-  };
-
   useEffect(() => {
     if (!user?.uid) return;
 
@@ -124,7 +125,7 @@ function Dashboard() {
     });
 
     return () => unsubscribe();
-  }, [user]);
+  }, [user]); // ✅ No need to add `scheduleReminders` if it's outside the component
 
   return (
     <div className="dashboard-container">
