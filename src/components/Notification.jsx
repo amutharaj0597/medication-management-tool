@@ -3,7 +3,7 @@ import { auth, db } from "../services/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import notificationSound from "../assets/notification.wav";
-import "./Notification.css"; 
+import "./Notification.css";
 
 function Notification() {
   const [prescriptions, setPrescriptions] = useState([]);
@@ -12,7 +12,10 @@ function Notification() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        const q = query(collection(db, "prescriptions"), where("uid", "==", currentUser.uid));
+        const q = query(
+          collection(db, "prescriptions"),
+          where("uid", "==", currentUser.uid)
+        );
         onSnapshot(q, (snapshot) => {
           const data = snapshot.docs.map((doc) => ({
             id: doc.id,
@@ -26,7 +29,7 @@ function Notification() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [navigate]); // ✅ added navigate to fix ESLint warning
 
   useEffect(() => {
     if (prescriptions.length === 0) return;
@@ -93,7 +96,9 @@ function Notification() {
           <div key={p.id} className="notification-card">
             <h4>{p.medicineName}</h4>
             <p>{p.time}</p>
-            <p>{p.startDate} to {p.endDate}</p>
+            <p>
+              {p.startDate} to {p.endDate}
+            </p>
           </div>
         ))}
       </div>
