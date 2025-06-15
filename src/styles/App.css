@@ -1,0 +1,136 @@
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0e7ff, #f5f3ff);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Shared Auth Container */
+.auth-container {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+}
+
+.auth-container:hover {
+  transform: scale(1.02);
+}
+
+.auth-container h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #1f2937;
+}
+
+/* Form */
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-container input {
+  padding: 12px 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  transition: 0.2s;
+}
+
+.auth-container input:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.auth-container button {
+  padding: 12px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container button:hover {
+  background-color: #4338ca;
+}
+
+/* Switch Links */
+.auth-container p {
+  font-size: 14px;
+  margin-top: 12px;
+  color: #374151;
+}
+
+.auth-container a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+/* Dashboard */
+.dashboard {
+  text-align: center;
+  padding: 40px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.dashboard h2 {
+  font-size: 26px;
+  color: #1e3a8a;
+}
+
+.dashboard p {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #4b5563;
+}
+
+.dashboard button {
+  margin-top: 20px;
+  padding: 10px 24px;
+  font-size: 15px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard button:hover {
+  background-color: #dc2626;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

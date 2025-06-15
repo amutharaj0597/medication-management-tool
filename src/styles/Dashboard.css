@@ -1,0 +1,99 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: sans-serif;
+  background: #f7f8fe;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #4b3ef0;
+  color: white;
+  padding: 30px 20px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar h3 {
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+.sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: 0.3s;
+}
+
+.sidebar button:hover {
+  color: #d2d1ff;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.main-content h2 {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 24px;
+}
+
+.prescription-form {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+  max-width: 600px;
+  width: 100%;
+}
+
+.prescription-form input,
+.prescription-form select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.date-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.date-group label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #444;
+}
+
+.prescription-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4b3ef0;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.prescription-form button:hover {
+  background-color: #3a2ed9;
+}

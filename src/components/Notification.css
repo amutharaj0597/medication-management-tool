@@ -1,0 +1,51 @@
+.notification-page {
+  padding: 40px;
+  background-color: #f4f6ff;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.notification-page h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.notification-page p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.notification-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.notification-card {
+  background-color: white;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid #4f46e5;
+  width: 100%;
+  max-width: 350px;
+  transition: transform 0.2s ease;
+}
+
+.notification-card:hover {
+  transform: scale(1.02);
+}
+
+.notification-card h4 {
+  font-size: 18px;
+  color: #222;
+  margin: 0 0 8px;
+}
+
+.notification-card p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
